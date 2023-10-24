@@ -6,35 +6,32 @@ import {
   Pressable,
   Modal,
 } from 'react-native';
+import Form from './src/components/Form';
 
 const App = () => {
 
   const [modalVisible, setModalVisible] = useState(false);
 
-  console.log(modalVisible);
-
-  const newAppointmentHandler = () => {
-    console.log('Nueva Cita');
-  }
+  const closeModal = () => {
+    setModalVisible(false);
+  };
 
   return (
     <View style={styles.container}>
     <Text style={styles.title}>Administrador de Citas</Text>
     <Text style={styles.subtitle} >Veterinaria</Text>
     <Pressable
-    onPress={ newAppointmentHandler }
+    onPress={ ()=> setModalVisible(true) }
     style={styles.btnNewAppointment}
     >
     <Text
     style={styles.btnTextNewAppointment}
     > Nueva Cita </Text>
     </Pressable>
-    <Modal
-    animationType='slide'
-    visible={false}
-    > 
-      <Text> Desde Modal </Text>
-    </Modal>
+    <Form
+      modalVisible={modalVisible}
+      closeModal={closeModal}
+    />
     </View>
   );
 }
